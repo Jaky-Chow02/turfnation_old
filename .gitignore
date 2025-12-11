@@ -137,3 +137,77 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# ============================================
+# TurfNation Project Specific
+# ============================================
+
+# Backend specific
+backend/node_modules/
+backend/.env
+backend/uploads/
+backend/temp/
+
+# Frontend specific
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# IDE - VSCode
+.vscode/
+*.code-workspace
+
+# IDE - IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - WebStorm
+.idea/
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# MongoDB
+*.mongodb
+
+# Test files
+backend/test-results/
+frontend/test-results/
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# Generated QR codes (if stored locally during development)
+backend/qrcodes/
+backend/public/qrcodes/
+
+# Uploaded files during development
+backend/public/uploads/
+
+# API keys and secrets (extra safety)
+**/config/secrets.js
+**/config/keys.js
+
+# Package lock files (optional - uncomment if using only yarn)
+# package-lock.json
+
+# Debug files
+*.map
+
+# Local MongoDB data
+data/
+mongodb_data/
