@@ -1,70 +1,353 @@
-# Getting Started with Create React App
+# TurfNation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web-based turf booking and management platform built using the MERN stack.
 
-## Available Scripts
+## Team Members - Group 7, Section 8
 
-In the project directory, you can run:
+- Azharul Habib (22241009)
+- Jaky Ahmed Chowdhury (22201616) - Sprint Leader
+- Mohammad Shadmaan Saquib (22299323)
+- Faria Mahamud Prity (22299486)
 
-### `npm start`
+## Project Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+TurfNation is a management system designed to help sports venues, mini-stadiums, and turfs organize their operations. The platform allows users to check availability, book time slots, view weather conditions, participate in tournaments, and track their activity statistics. Turf owners can manage bookings, schedules, and communicate with users through announcements.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+### User Features
+- User registration and authentication
+- Browse and search available turfs by location and sport type
+- Real-time slot availability checking
+- Online booking with instant confirmation
+- QR code generation for booking verification
+- Weather forecast integration for scheduled bookings
+- Tournament creation and participation
+- Personal statistics tracking and rewards system
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Turf Owner Features
+- Booking management dashboard
+- Schedule overview with calendar view
+- Announcement system for user notifications
+- Turf condition status updates
+- Revenue and booking analytics
 
-### `npm run build`
+## Technology Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Backend**
+- Node.js
+- Express.js
+- MongoDB with Mongoose ODM
+- JWT for authentication
+- bcryptjs for password hashing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Frontend**
+- React.js
+- Axios for API requests
+- React Router for navigation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Additional Libraries**
+- QRCode for receipt generation
+- Morgan for HTTP request logging
+- CORS for cross-origin resource sharing
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+turfnation/
+├── backend/
+│   ├── config/
+│   │   └── database.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── bookingController.js
+│   │   ├── rewardsController.js
+│   │   ├── tournamentController.js
+│   │   ├── turfController.js
+│   │   └── weatherController.js
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   └── errorHandler.js
+│   ├── models/
+│   │   ├── Booking.js
+│   │   ├── Rewards.js
+│   │   ├── Tournament.js
+│   │   ├── Turf.js
+│   │   ├── User.js
+│   │   └── Weather.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── bookingRoutes.js
+│   │   ├── rewardsRoutes.js
+│   │   ├── tournamentRoutes.js
+│   │   ├── turfRoutes.js
+│   │   └── weatherRoutes.js
+│   ├── utils/
+│   │   ├── helpers.js
+│   │   └── weatherService.js
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+├── frontend/
+└── README.md
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation and Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Prerequisites
+- Node.js version 14 or higher
+- MongoDB Atlas account
+- npm package manager
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Backend Setup
 
-## Learn More
+1. Clone the repository
+```bash
+git clone https://github.com/Jaky-Chow02/turfnation.git
+cd turfnation/backend
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Install dependencies
+```bash
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Configure environment variables
 
-### Code Splitting
+Create a `.env` file in the backend directory with the following variables:
+```
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+NODE_ENV=development
+CLIENT_URL=http://localhost:3000
+WEATHER_API_KEY=mock_weather
+USE_MOCK_WEATHER=true
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Start the server
+```bash
+npm run dev
+```
 
-### Analyzing the Bundle Size
+The API will be available at `http://localhost:5000`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Frontend Setup
 
-### Making a Progressive Web App
+```bash
+cd frontend
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## API Documentation
 
-### Advanced Configuration
+### Authentication Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**POST** `/api/auth/register`
+- Register a new user account
+- Body: `{ name, email, password, phone, role }`
 
-### Deployment
+**POST** `/api/auth/login`
+- Authenticate user and receive JWT token
+- Body: `{ email, password }`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**GET** `/api/auth/me`
+- Retrieve current user information
+- Requires authentication
 
-### `npm run build` fails to minify
+**PUT** `/api/auth/profile`
+- Update user profile information
+- Requires authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**PUT** `/api/auth/change-password`
+- Change user password
+- Requires authentication
+
+### Turf Endpoints
+
+**GET** `/api/turfs`
+- Retrieve all active turfs
+- Query parameters: `city`, `sport`, `search`, `page`, `limit`
+
+**GET** `/api/turfs/:id`
+- Get details of a specific turf
+
+**POST** `/api/turfs`
+- Create a new turf listing
+- Requires turf owner authentication
+
+**PUT** `/api/turfs/:id`
+- Update turf information
+- Requires turf owner authentication
+
+**DELETE** `/api/turfs/:id`
+- Deactivate a turf listing
+- Requires turf owner authentication
+
+**GET** `/api/turfs/:id/availability`
+- Check available time slots for a specific date
+- Query parameters: `date`
+
+**POST** `/api/turfs/:id/announcement`
+- Post an announcement for turf users
+- Requires turf owner authentication
+
+### Booking Endpoints
+
+**POST** `/api/bookings`
+- Create a new booking
+- Body: `{ turf, date, startTime, endTime, sport, notes }`
+- Requires authentication
+
+**GET** `/api/bookings/my-bookings`
+- Retrieve all bookings for the authenticated user
+- Query parameters: `status`, `page`, `limit`
+
+**GET** `/api/bookings/:id`
+- Get specific booking details
+- Requires authentication
+
+**PUT** `/api/bookings/:id/cancel`
+- Cancel an existing booking
+- Body: `{ reason }`
+- Requires authentication
+
+**PUT** `/api/bookings/:id/reschedule`
+- Reschedule a booking to a different time
+- Body: `{ date, startTime, endTime }`
+- Requires authentication
+
+**GET** `/api/bookings/turf/:turfId`
+- Get all bookings for a specific turf
+- Requires turf owner authentication
+
+### Tournament Endpoints
+
+**GET** `/api/tournaments`
+- List all tournaments
+- Query parameters: `sport`, `status`, `page`, `limit`
+
+**GET** `/api/tournaments/:id`
+- Get tournament details including participants
+
+**POST** `/api/tournaments`
+- Create a new tournament
+- Requires authentication
+
+**POST** `/api/tournaments/:id/join`
+- Join a tournament with a team
+- Body: `{ teamName, players }`
+- Requires authentication
+
+**PUT** `/api/tournaments/:id`
+- Update tournament information
+- Requires creator authentication
+
+### Weather Endpoints
+
+**GET** `/api/weather/current`
+- Get current weather conditions
+- Query parameters: `city`
+
+**GET** `/api/weather/forecast`
+- Get 5-day weather forecast
+- Query parameters: `city`
+
+### Rewards Endpoints
+
+**GET** `/api/rewards/me`
+- Get user's rewards and statistics
+- Requires authentication
+
+**GET** `/api/rewards/leaderboard`
+- View global leaderboard rankings
+- Query parameters: `limit`
+
+**POST** `/api/rewards/badges`
+- Award a badge to user
+- Requires authentication
+
+## Authentication
+
+Protected routes require a JWT token in the Authorization header:
+```
+Authorization: Bearer <token>
+```
+
+Obtain the token by logging in through `/api/auth/login`.
+
+## Database Schema
+
+### User Model
+Stores user credentials, profile information, role designation, and activity statistics.
+
+### Turf Model
+Contains turf details including location, available sports, pricing, operating hours, and current condition status.
+
+### Booking Model
+Records booking information with user and turf references, time slots, payment details, QR codes, and weather data.
+
+### Tournament Model
+Manages tournament data including participants, match schedules, rules, and status tracking.
+
+### Weather Model
+Caches weather information for locations with temperature, conditions, and suitability assessments.
+
+### Rewards Model
+Tracks user points, achievement levels, earned badges, milestones, and leaderboard rankings.
+
+## Development Workflow
+
+The project follows an agile development approach with four main sprints:
+
+1. Backend infrastructure and database models
+2. Authentication and turf management APIs
+3. Booking system with QR code generation
+4. Tournament and rewards modules with weather integration
+
+## Testing
+
+API endpoints can be tested using:
+- Postman for comprehensive API testing
+- Thunder Client VS Code extension
+- cURL commands for quick tests
+
+Example test request:
+```bash
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test User","email":"test@example.com","password":"password123"}'
+```
+
+## Known Limitations
+
+- Payment processing currently uses mock transactions
+- Email notification system is not yet implemented
+- Frontend user interface is under development
+
+## Future Scope
+
+- Integration with real payment gateways
+- Email and SMS notification services
+- Advanced analytics dashboard for administrators
+- Mobile application development
+- Social networking features for players
+- Live match scoring capabilities
+- Equipment rental management
+
+## Contributors
+
+This project was developed as part of the coursework for BRAC University, Computer Science Department.
+
+## License
+
+MIT License
+
+Copyright (c) 2024 TurfNation Development Team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and to sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
