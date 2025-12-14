@@ -35,6 +35,16 @@ export const cancelBooking = (id, reason) => api.put(`/bookings/${id}/cancel`, {
 
 // Weather API
 export const getWeather = (city) => api.get('/weather/current', { params: { city } });
+// Add these tournament functions
+export const getAllTournaments = (params) => api.get('/tournaments', { params });
+export const getTournament = (id) => api.get(`/tournaments/${id}`);
+export const createTournament = (data) => api.post('/tournaments', data);
+export const joinTournament = (id, data) => api.post(`/tournaments/${id}/join`, data);
+// Turf Owner APIs
+export const getMyTurfs = () => api.get('/turfs?owner=me');
+export const getTurfBookings = (turfId, params) => api.get(`/bookings/turf/${turfId}`, { params });
+export const addAnnouncement = (turfId, message) => api.post(`/turfs/${turfId}/announcement`, { message });
 
 export const getMyRewards = () => api.get('/rewards/me');
+
 export default api;

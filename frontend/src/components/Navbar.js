@@ -6,6 +6,7 @@ function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const userName = localStorage.getItem('userName');
+  const userRole = localStorage.getItem('userRole');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -22,12 +23,21 @@ function Navbar() {
         
         <div className="nav-menu">
           <Link to="/turfs" className="nav-link">Turfs</Link>
+          <Link to="/tournaments" className="nav-link">Tournaments</Link>
+          
+          {token && userRole === 'turf_owner' && (
+              <Link to="/owner-dashboard" className="nav-link">Owner Dashboard</Link>
+          )}
+          
           
           {token ? (
             <>
               <Link to="/dashboard" className="nav-link">Dashboard</Link>
+
               <Link to="/my-bookings" className="nav-link">My Bookings</Link>
+              
               <span className="nav-user">Hello, {userName}</span>
+
               <button onClick={handleLogout} className="nav-btn">Logout</button>
             </>
           ) : (

@@ -22,6 +22,7 @@ function Login() {
       const response = await login(formData);
       localStorage.setItem('token', response.data.data.token);
       localStorage.setItem('userName', response.data.data.user.name);
+      localStorage.setItem('userRole', response.data.data.user.role);
       navigate('/turfs');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
