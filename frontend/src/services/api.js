@@ -36,4 +36,5 @@ export const cancelBooking = (id, reason) => api.put(`/bookings/${id}/cancel`, {
 // Weather API
 export const getWeather = (city) => api.get('/weather/current', { params: { city } });
 
+export const getMyRewards = () => api.get('/rewards/me');
 export default api;

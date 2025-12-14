@@ -25,6 +25,7 @@ function Navbar() {
           
           {token ? (
             <>
+              <Link to="/dashboard" className="nav-link">Dashboard</Link>
               <Link to="/my-bookings" className="nav-link">My Bookings</Link>
               <span className="nav-user">Hello, {userName}</span>
               <button onClick={handleLogout} className="nav-btn">Logout</button>
